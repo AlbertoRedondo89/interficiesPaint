@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class OpenCVDrawingApp extends JPanel {
     private Mat image;
@@ -15,7 +16,8 @@ public class OpenCVDrawingApp extends JPanel {
     private java.awt.Point lastPoint;
 
     public OpenCVDrawingApp(String imagePath) {
-        System.load("C:\\Users\\Alumne\\Documents\\NetBeansProjects\\opencv\\build\\java\\x64\\opencv_java490.dll");
+        File dll = new File("src\\main\\java\\spdvi\\paintnewversion\\funciones\\opencv_java490.dll");
+        System.load(dll.getAbsolutePath());
         image = Imgcodecs.imread(imagePath);
         bufferedImage = matToBufferedImage(image);
 
@@ -59,7 +61,7 @@ public class OpenCVDrawingApp extends JPanel {
     }
 
     public static void main(String[] args) {
-        String imagePath = "C:\\Users\\Alumne\\Documents\\NetBeansProjects\\dibuixets\\images\\moon.jpg";
+        String imagePath = "images/moon.jpg";
         JFrame frame = new JFrame("OpenCV Drawing App");
         OpenCVDrawingApp panel = new OpenCVDrawingApp(imagePath);
         frame.add(panel);
